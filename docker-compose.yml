@@ -35,6 +35,9 @@ services:
     ports:
       - "8080:8080"
     environment:
+      - AUTH_API_ADDRESS=http://auth-api:8081
+      - TODOS_API_ADDRESS=http://todos-api:8082
+      - USERS_API_ADDRESS=http://users-api:8083
       - VITE_TODOS_API_ADDRESS=https://nneoma.site/api/todos
       - VITE_USERS_API_ADDRESS=https://nneoma.site/api/users
       - VITE_AUTH_API_ADDRESS=https://nneoma.site/api/auth
