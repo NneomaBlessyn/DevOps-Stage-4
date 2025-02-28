@@ -1,14 +1,13 @@
-# Use Node.js 14 as base
+# Use Node.js 14 as required
 FROM node:14
 
-# Set the working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json before installing dependencies
+# Copy package.json and package-lock.json before running npm install
 COPY package*.json ./
 
-# Install dependencies only (no cache clearing needed)
-RUN npm ci --only=production
+# Clear npm cache and install dependencies
+RUN npm cache clean --force && npm install
 
 # Copy the rest of the application code
 COPY . .
@@ -16,5 +15,5 @@ COPY . .
 # Expose the port
 EXPOSE 8080
 
-# Use a better command for production
-CMD ["node", "server.js"]
+# Start the application
+CMD ["npm", "run", "dev"]
